@@ -1,0 +1,72 @@
+html,
+body {
+	height: 100%;
+}
+
+html,
+body,
+input,
+textarea,
+button {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
+
+#sidebar {
+	background-color: #e57373;
+	padding: 15px;
+	.sidebarText {
+		font-weight: 400;
+		font-size: 34px;
+		line-height: 40px;
+		color: #fff;
+	}
+	.sidebarAuthor {
+		font-size: 20px;
+		line-height: 26px;
+		span {
+			color: #fff;
+		}
+	}
+}
+
+.modalWindow {
+	background: rgba(0, 0, 0, 0.493);
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	.modal {
+		display: block;
+	}
+}
+
+.card:hover {
+	content: '';
+	position: relative;
+	display: block;
+	width: auto;
+	height: auto;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0) url('images/cross.svg') no-repeat;
+	background-size: 100% 100%;
+}
+
+@media (min-width: 768px) {
+	#sidebar {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		width: 180px;
+		height: 100%;
+		padding-top: 30px;
+	}
+	#content {
+		margin-left: 180px;
+	}
+}
