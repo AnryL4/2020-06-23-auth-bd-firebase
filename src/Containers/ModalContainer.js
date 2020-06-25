@@ -39,7 +39,7 @@ const ModalContainer = () => {
 		};
 		dispatch(signIn(dataFirebase));
 		setInput({ email: '', password: '', rememberMe: false });
-		dispatch(hideModal());
+		// dispatch(hideModal());
 	};
 
 	return (

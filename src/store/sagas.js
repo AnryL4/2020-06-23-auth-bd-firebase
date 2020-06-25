@@ -6,6 +6,8 @@ import {
 	hideAlert,
 	setToken,
 	setAuthor,
+	showModal,
+	hideModal,
 } from './actions';
 import { AxiosApi } from '../utils/axiosApi';
 import { LocalStorageApi } from '../utils/localStorageApi';
@@ -30,12 +32,11 @@ function* sagaWorkerCreatePosts(action) {
 		yield call(LocalStorageApi.addToLocalStoragePost, action.payload);
 		yield put(hideLoader());
 	} catch (error) {
-		console.log(error)
 		yield put(showAlert('С сервером что-то пошло не так', 'alert'));
 		yield put(hideLoader());
-	} finally {
 		yield delay(2000);
 		yield put(hideAlert('alert'));
+	} finally {
 	}
 }
 
@@ -46,34 +47,36 @@ function* sagaWorkerDeletePosts(action) {
 	} catch (error) {
 		yield put(showAlert('Что-то пошло не так', 'alert'));
 		yield put(hideLoader());
-	} finally {
 		yield delay(2000);
 		yield put(hideAlert('alert'));
+	} finally {
 	}
 }
 
 function* sagaWorkerAuthSignIn(action) {
 	try {
-		const {
-			data: { idToken },
-		} = yield call(
+		const response = yield call(
 			AxiosApi.axiosSignFirebaseWithMailAndPassword,
 			action.dataFirebase
 		);
-		yield put(setToken(idToken));
+		yield put(setToken(response.data.idToken));
 		yield put(setAuthor(action.dataFirebase.email));
 		if (action.dataFirebase.rememberMe) {
-			yield call(LocalStorageApi.addToLocalStorageToken, idToken);
+			yield call(
+				LocalStorageApi.addToLocalStorageToken,
+				response.data.idToken
+			);
 			yield call(
 				LocalStorageApi.addToLocalStorageAuthor,
 				action.dataFirebase.email
 			);
 		}
 	} catch (error) {
-		console.log(error);
-		yield put(showAlert('Ошибка', 'alert'));
-	} finally {
+		yield put(
+			showModal({ title: error.message, text: 'Войти', error: true })
+		);
 		yield delay(2000);
-		yield put(hideAlert('alert'));
+	} finally {
+		yield put(hideModal());
 	}
 }

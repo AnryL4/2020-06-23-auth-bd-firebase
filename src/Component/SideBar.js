@@ -9,7 +9,7 @@ const SideBar = () => {
 	const { idToken, author } = useSelector((state) => state.app);
 
 	const modalOpen = () => {
-		dispatch(showModal({ title: 'Войдите в систему', text: 'Войти' }));
+		dispatch(showModal({ title: 'Войдите в систему', text: 'Войти', error: false }));
 	};
 
 	const textBotton = !idToken ? 'Войти' : 'Выйти';

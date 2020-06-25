@@ -1,4 +1,5 @@
 import React from 'react';
+import { Loader } from './Loader';
 
 export const AuthModal = ({
 	modal,
@@ -7,6 +8,54 @@ export const AuthModal = ({
 	changeInputHandler,
 	submitHandler,
 }) => {
+	const notError = (
+		<div className='modal-body'>
+			<form onSubmit={submitHandler}>
+				<div className='form-row'>
+					<div className='form-group col-md-6'>
+						<label htmlFor='inputEmail4'>Почта</label>
+						<input
+							type='email'
+							className='form-control'
+							id='inputEmail4'
+							value={input.email}
+							onChange={changeInputHandler}
+							name='email'
+						/>
+					</div>
+					<div className='form-group col-md-6'>
+						<label htmlFor='inputPassword4'>Пароль</label>
+						<input
+							type='password'
+							className='form-control'
+							id='inputPassword4'
+							value={input.password}
+							onChange={changeInputHandler}
+							name='password'
+						/>
+					</div>
+
+					<div className='form-check'>
+						<input
+							type='checkbox'
+							className='form-check-input'
+							id='exampleCheck1'
+							checked={input.rememberMe}
+							onChange={changeInputHandler}
+							name='rememberMe'
+						/>
+						<label
+							className='form-check-label'
+							htmlFor='exampleCheck1'
+						>
+							Запомнить меня?
+						</label>
+					</div>
+				</div>
+			</form>
+		</div>
+	);
+
 	return (
 		<>
 			{modal && (
@@ -28,66 +77,13 @@ export const AuthModal = ({
 										&times;
 									</button>
 								</div>
-								<div className='modal-body'>
-									<form onSubmit={submitHandler}>
-										<div className='form-row'>
-											<div className='form-group col-md-6'>
-												<label htmlFor='inputEmail4'>
-													Почта
-												</label>
-												<input
-													type='email'
-													className='form-control'
-													id='inputEmail4'
-													value={input.email}
-													onChange={
-														changeInputHandler
-													}
-													name='email'
-												/>
-											</div>
-											<div className='form-group col-md-6'>
-												<label htmlFor='inputPassword4'>
-													Пароль
-												</label>
-												<input
-													type='password'
-													className='form-control'
-													id='inputPassword4'
-													value={input.password}
-													onChange={
-														changeInputHandler
-													}
-													name='password'
-												/>
-											</div>
-
-											<div className='form-check'>
-												<input
-													type='checkbox'
-													className='form-check-input'
-													id='exampleCheck1'
-													checked={input.rememberMe}
-													onChange={
-														changeInputHandler
-													}
-													name='rememberMe'
-												/>
-												<label
-													className='form-check-label'
-													htmlFor='exampleCheck1'
-												>
-													Запомнить меня?
-												</label>
-											</div>
-										</div>
-									</form>
-								</div>
+								{!modal.error ? notError : <Loader />}
 								<div className='modal-footer'>
 									<button
 										type='button'
 										className='btn btn-primary'
 										onClick={submitHandler}
+										disabled={modal.error}
 									>
 										{modal.text}
 									</button>

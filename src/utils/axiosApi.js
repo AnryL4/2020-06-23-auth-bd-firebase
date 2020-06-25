@@ -29,7 +29,17 @@ export class AxiosApi {
 				dataFirebase
 			);
 		} catch (error) {
-			console.log(error);
+			const e = error?.response?.data?.error || error;
+			if (e.message === 'INVALID_EMAIL') {
+				throw new Error('Неподходящий имейл');
+			}
+			if (e.message === 'Network Error') {
+				throw new Error('Ошибка соединения с базой');
+			}
+			if (e.message === 'EMAIL_NOT_FOUND') {
+				throw new Error('Имейл не найден');
+			}
+			throw new Error(e.message);
 		}
 	}
 }
