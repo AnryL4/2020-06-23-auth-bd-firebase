@@ -3,6 +3,7 @@ import FormPostsContainer from './Containers/FormPostsContainer';
 import ListContainer from './Containers/ListContainer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style/App.scss';
+import 'animate.css';
 import ModalContainer from './Containers/ModalContainer';
 import SideBar from './Component/SideBar';
 

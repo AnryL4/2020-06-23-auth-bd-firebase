@@ -10,7 +10,7 @@ const List = ({ posts, removePost, loader }) => {
 		posts
 			.map((post) => (
 				<div
-					className='card bg-light mb-3 mt-2'
+					className='card bg-light mb-3 mt-2 animate__animated animate__bounceInRight animate__faster'
 					key={post.id}
 					onClick={() => removePost(post.id)}
 				>

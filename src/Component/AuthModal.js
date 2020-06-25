@@ -61,7 +61,7 @@ export const AuthModal = ({
 			{modal && (
 				<div className='modalWindow' onClick={modalClose}>
 					<div className='modal' tabIndex='-1' role='dialog'>
-						<div className='modal-dialog'>
+						<div className='modal-dialog animate__animated animate__fadeIn animate__faster'>
 							<div className='modal-content'>
 								<div className='modal-header'>
 									<h5 className='modal-title'>
