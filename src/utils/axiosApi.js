@@ -42,6 +42,9 @@ export class AxiosApi {
 			if (e.message === 'MISSING_PASSWORD') {
 				throw new Error('Не указан пароль');
 			}
+			if (e.message === 'INVALID_PASSWORD') {
+				throw new Error('Не правильный пароль');
+			}
 			throw new Error(e.message);
 		}
 	}
