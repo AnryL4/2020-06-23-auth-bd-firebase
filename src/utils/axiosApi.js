@@ -39,6 +39,9 @@ export class AxiosApi {
 			if (e.message === 'EMAIL_NOT_FOUND') {
 				throw new Error('Имейл не найден');
 			}
+			if (e.message === 'MISSING_PASSWORD') {
+				throw new Error('Не указан пароль');
+			}
 			throw new Error(e.message);
 		}
 	}
