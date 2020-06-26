@@ -45,12 +45,10 @@ export function hideModal() {
 }
 
 export function showAlert(text, alertType) {
-	return (dispatch) => {
-		dispatch({
-			type: SHOW_ALERT,
-			payload: text,
-			alertType,
-		});
+	return {
+		type: SHOW_ALERT,
+		payload: text,
+		alertType,
 	};
 }
 

@@ -57,6 +57,10 @@ button {
 	background-size: 100% 100%;
 }
 
+#content {
+	max-width: 90%;
+}
+
 @media (min-width: 768px) {
 	#sidebar {
 		position: fixed;
@@ -67,6 +71,8 @@ button {
 		padding-top: 30px;
 	}
 	#content {
+		max-width: 95%;
 		margin-left: 180px;
+		max-width: calc(90% - 180px);
 	}
 }

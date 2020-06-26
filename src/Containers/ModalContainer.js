@@ -4,15 +4,15 @@ import { AuthModal } from '../Component/AuthModal';
 import { hideModal, signIn } from '../store/actions';
 
 const ModalContainer = () => {
-	const { modal } = useSelector((state) => state.app);
+	const dispatch = useDispatch();
+
+	const { modal, alertLogin } = useSelector((state) => state.app);
 
 	const [input, setInput] = useState({
 		email: '',
 		password: '',
 		rememberMe: false,
 	});
-
-	const dispatch = useDispatch();
 
 	const changeInputHandler = useCallback((event) => {
 		event.persist();
@@ -45,6 +45,7 @@ const ModalContainer = () => {
 	return (
 		<AuthModal
 			modal={modal}
+			alertLogin={alertLogin}
 			modalClose={modalClose}
 			changeInputHandler={changeInputHandler}
 			submitHandler={submitHandler}

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Loader } from './Loader';
+import AlertLogin from './AlertLogin';
+
 
 export const AuthModal = ({
 	modal,
@@ -7,6 +9,7 @@ export const AuthModal = ({
 	input,
 	changeInputHandler,
 	submitHandler,
+	alertLogin
 }) => {
 	const notError = (
 		<div className='modal-body'>
@@ -78,6 +81,7 @@ export const AuthModal = ({
 									</button>
 								</div>
 								{!modal.error ? notError : <Loader />}
+								{alertLogin && <AlertLogin text={alertLogin} />}
 								<div className='modal-footer'>
 									<button
 										type='button'
