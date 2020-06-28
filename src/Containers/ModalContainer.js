@@ -27,7 +27,6 @@ const ModalContainer = () => {
 	const modalClose = (e) => {
 		if (e.target.className === 'modal' || e.target.className === 'close')
 			dispatch(hideModal());
-		return;
 	};
 
 	const submitHandler = () => {
@@ -39,7 +38,6 @@ const ModalContainer = () => {
 		};
 		dispatch(signIn(dataFirebase));
 		setInput({ email: '', password: '', rememberMe: false });
-		// dispatch(hideModal());
 	};
 
 	return (

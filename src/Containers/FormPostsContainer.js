@@ -2,6 +2,8 @@ import React, { useState, useCallback } from 'react';
 import FormPosts from '../Component/FormPosts';
 import { useDispatch, useSelector } from 'react-redux';
 import { hideAlert, createPost } from '../store/actions';
+import moment from "moment";
+import 'moment/locale/ru';
 import Alert from '../Component/Alert';
 
 const FormPostsContainer = () => {
@@ -17,27 +19,10 @@ const FormPostsContainer = () => {
 
 	const submitHandler = (event) => {
 		event.preventDefault();
-		const nd = new Date();
+		const nd = moment();
 		const newPost = {
 			title,
-			header: `Пост создан ${(nd.getMonth() + 1)
-				.toString()
-				.padStart(2, '0')}/${nd
-				.getDate()
-				.toString()
-				.padStart(2, '0')}/${nd
-				.getFullYear()
-				.toString()
-				.padStart(4, '0')} ${nd
-				.getHours()
-				.toString()
-				.padStart(2, '0')}:${nd
-				.getMinutes()
-				.toString()
-				.padStart(2, '0')}:${nd
-				.getSeconds()
-				.toString()
-				.padStart(2, '0')}`,
+			header: `Пост создан ${nd.format('dddd, MMMM DD YYYY, h:mm:ss')}`,
 			id: new Date().toJSON(),
 			author: author,
 		};

@@ -1,4 +1,4 @@
-import { takeEvery, put, call, delay, take, cancel } from 'redux-saga/effects';
+import { takeEvery, put, call, delay } from 'redux-saga/effects';
 import {
 	showLoader,
 	hideLoader,
@@ -11,7 +11,7 @@ import {
 } from './actions';
 import { AxiosApi } from '../utils/axiosApi';
 import { LocalStorageApi } from '../utils/localStorageApi';
-import { CREATE_POST, DELETE_POST, SIGN_IN, HIDE_MODAL } from './types';
+import { CREATE_POST, DELETE_POST, SIGN_IN } from './types';
 
 export function* sagaWatcherCreatePosts() {
 	yield takeEvery(CREATE_POST, sagaWorkerCreatePosts);
